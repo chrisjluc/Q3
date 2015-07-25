@@ -225,7 +225,14 @@ int main() {
         if (it == main->end()) {
             cout << "\nMenu " << name << " does not exist.\n";
         } else {
-            cout << *it << endl;
+            string depth = it->menuDepth();
+            while(it != main->end()){
+                cout << *it << endl;
+                ++it;
+                if (it->menuDepth() == depth){
+                    break;
+                }
+            }
         }
     }
 
