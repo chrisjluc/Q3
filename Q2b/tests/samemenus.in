@@ -1,6 +1,6 @@
 m 0 "rest"
 m 1 "food"
-m 2 "asian"
+m 2 "food"
 i 3 "noodles" 1 1 false
 i 4 "rice" 2 2 false
 i 5 "burger" 3 3 true
@@ -15,4 +15,4 @@ p 1
 a 0 1
 p 0
 d
-"food"
+"rice"
