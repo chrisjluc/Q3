@@ -5,10 +5,13 @@ DEPENDS = ${OBJECTS:.o=.d}
 EXEC=menu
 
 $(EXEC): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJECTS) 
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJECTS)
 
 
 clean:
 	rm -f *.o $(EXEC) $(TESTS) $(DEPENDS)
+
+zip :
+		zip menu.zip *.cpp *.h Makefile
 
 -include ${DEPENDS}

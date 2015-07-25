@@ -8,10 +8,6 @@
 
 class MenuItem : public MenuComponent {
 public:
-    class MenuItemIterator : MenuComponent::Iterator {
-
-    };
-
     // constructor
     MenuItem(const std::string, float, int, bool);
 
@@ -25,10 +21,6 @@ public:
     virtual int calories() const;
 
     virtual void caloriesIs(int c);
-
-    virtual MenuComponent::Iterator begin();
-
-    virtual MenuComponent::Iterator end();
 
 protected:
     virtual void print(std::ostream &) const;

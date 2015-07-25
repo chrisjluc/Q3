@@ -41,11 +41,3 @@ void MenuItem::print(ostream &sout) const {
     if (isVeggie())
         sout << " (V)";
 }
-
-MenuComponent::Iterator MenuItem::begin() {
-    return MenuComponent::begin();
-}
-
-MenuComponent::Iterator MenuItem::end() {
-    return MenuComponent::end();
-}

@@ -10,10 +10,6 @@
 
 class Menu : public MenuComponent {
 public:
-    class Iterator : public MenuComponent::Iterator {
-
-    };
-
     // constructor
     Menu(const std::string);
 
@@ -32,10 +28,6 @@ public:
     virtual void menuDepthInc();
 
     virtual int size() const;
-
-    virtual MenuComponent::Iterator begin();
-
-    virtual MenuComponent::Iterator end();
 
 protected:
     virtual void print(std::ostream &) const;
