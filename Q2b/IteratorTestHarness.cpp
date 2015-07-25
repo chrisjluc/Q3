@@ -212,7 +212,7 @@ int main() {
     cout.precision(2);
     cout.setf(ios::fixed, ios::floatfield);
 
-    cout << "\nEnter the name of menu element to be printed: ";
+    cout << "\nEnter name of menu element to be printed: ";
     string name = readName(cin);
 
     MenuComponent *main = menus[0];
