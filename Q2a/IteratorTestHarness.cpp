@@ -165,6 +165,9 @@ int main() {
                     int index = readIndex(cin);
                     if (!menus[index]) throw NoMenu(index);
 
+                    for (auto it = menus[index]->begin(); it != menus[index]->end(); ++it) {
+                        cout << *it << endl;
+                    }
 
                     break;
                 }
@@ -205,6 +208,9 @@ int main() {
 
 
     } // while cin OK
+
+    cout.precision(2);
+    cout.setf(ios::fixed, ios::floatfield);
 
     cout << "\nVeggie Items:\n";
     MenuComponent *main = menus[0];
