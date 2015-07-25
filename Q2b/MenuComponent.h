@@ -46,6 +46,9 @@ public:
 
     friend bool operator==(const MenuComponent &, const MenuComponent &);
 
+    friend bool operator!=(const MenuComponent &, const MenuComponent &);
+
+
     // Exception to be throw if container operation is called on a leaf node
     class InvalidOp {
     };
@@ -96,5 +99,8 @@ std::ostream &operator<<(std::ostream &, const MenuComponent *);
 std::ostream &operator<<(std::ostream &, const MenuComponent &);
 
 bool operator==(const MenuComponent &, const MenuComponent &);
+
+bool operator!=(const MenuComponent &, const MenuComponent &);
+
 
 #endif

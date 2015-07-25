@@ -219,11 +219,14 @@ int main() {
     if (main == NULL) {
         cout << "Menu Element 0 does not exist." << endl;
     } else {
-        std::for_each(main->begin(), main->end(), [name](const MenuComponent &m) {
-            if (m.name() == name) {
-                cout << "\t" << m.name() << ", $" << m.price() << ", cal=" << m.calories() << " (V)\n";
-            }
+        auto it = std::find_if(main->begin(), main->end(), [name](const MenuComponent &m) {
+            return m.name() == name;
         });
+        if (it == main->end()) {
+            cout << "\nMenu " << name << " does not exist.\n";
+        } else {
+            cout << *it << endl;
+        }
     }
 
     for (int i = 0; i < 10; i++) {

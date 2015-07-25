@@ -25,6 +25,10 @@ bool operator==(const MenuComponent &a, const MenuComponent &b) {
     return a.name() == b.name() && a.menuDepth() == b.menuDepth();
 }
 
+bool operator!=(const MenuComponent &a, const MenuComponent &b) {
+    return !(a == b);
+}
+
 MenuComponent::Iterator MenuComponent::begin() {
     return MenuComponent::Iterator(this);
 }
@@ -63,6 +67,9 @@ MenuComponent &MenuComponent::Iterator::operator*() {
 }
 
 MenuComponent *MenuComponent::Iterator::operator->() {
+    if(istack.size() == 0){
+        return NULL;
+    }
     return istack.top()->node;
 }
 
