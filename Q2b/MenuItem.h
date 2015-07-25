@@ -22,6 +22,8 @@ public:
 
     virtual void caloriesIs(int c);
 
+    virtual bool isLeaf() const {return true};
+
 protected:
     virtual void print(std::ostream &) const;
 

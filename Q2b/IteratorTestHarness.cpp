@@ -226,10 +226,13 @@ int main() {
             cout << "\nMenu " << name << " does not exist.\n";
         } else {
             int depth = (int) it->menuDepth().length();
-            while(it != main->end()){
+            if (it->isLeaf()) {
+                cout << endl;
+            }
+            while (it != main->end()) {
                 cout << *it << endl;
                 ++it;
-                if (it == NULL || it->menuDepth().length() <= depth){
+                if (it == NULL || it->menuDepth().length() <= depth) {
                     break;
                 }
             }
