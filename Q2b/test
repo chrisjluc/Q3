@@ -16,4 +16,4 @@ diff tests/.advanced1 tests/.advanced2
 
 ./menu < tests/samemenus.in > tests/.samemenus1
 ./menuMaster < tests/samemenus.in > tests/.samemenus2
-diff tests/samemenus1 tests/.samemenus2
+diff tests/.samemenus1 tests/.samemenus2
