@@ -1,0 +1,41 @@
+Test harness for Menu Composite and Iterator
+
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: rice, $2.00, cal=2
+
+Command: burger, $3.00, cal=3 (V)
+
+Command: 
+Command: 
+Command: 
+asian:
+	noodles, $1.00, cal=1
+	rice, $2.00, cal=2
+
+Command: 
+Command: 
+Command: 
+food:
+
+	asian:
+		noodles, $1.00, cal=1
+		rice, $2.00, cal=2
+	burger, $3.00, cal=3 (V)
+
+Command: 
+Command: 
+rest:
+
+	food:
+
+		asian:
+			noodles, $1.00, cal=1
+			rice, $2.00, cal=2
+		burger, $3.00, cal=3 (V)
+
+Command: 
