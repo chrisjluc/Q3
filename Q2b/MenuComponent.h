@@ -76,7 +76,8 @@ public:
     std::string menuDepth() const { return menuDepth_; }        // depth of menu component in composite structure (used to indent the element when printing
     virtual void menuDepthInc();                               // increment the depth of the menu component
     virtual int size() const { return 1; }                      // number of elements in menu component, including all descendents and including self
-    virtual bool isLeaf() const { return false};
+    virtual bool isLeaf() const { return false; };
+
     virtual MenuComponent::Iterator begin();
 
     virtual MenuComponent::Iterator end();
