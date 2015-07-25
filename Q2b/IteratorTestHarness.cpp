@@ -229,7 +229,7 @@ int main() {
             while(it != main->end()){
                 cout << *it << endl;
                 ++it;
-                if (it->menuDepth() == depth){
+                if (it == NULL || it->menuDepth() == depth){
                     break;
                 }
             }
