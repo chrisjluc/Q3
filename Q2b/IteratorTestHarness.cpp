@@ -217,7 +217,7 @@ int main() {
 
     MenuComponent *main = menus[0];
     if (main == NULL) {
-        cout << "Menu Element 0 does not exist." << endl;
+        cout << "\nMenu Element 0 does not exist." << endl;
     } else {
         auto it = std::find_if(main->begin(), main->end(), [name](const MenuComponent &m) {
             return m.name() == name;
