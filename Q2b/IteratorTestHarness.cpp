@@ -226,9 +226,7 @@ int main() {
             cout << "\nMenu " << name << " does not exist.\n";
         } else {
             int depth = (int) it->menuDepth().length();
-            if (it->isLeaf()) {
-                cout << endl;
-            }
+            cout << endl;
             while (it != main->end()) {
                 cout << *it << endl;
                 ++it;
