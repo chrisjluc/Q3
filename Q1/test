@@ -1,13 +1,15 @@
-m 0 "restaurant"
-m 1 "food"
-m 2 "asian"
-i 3 "noodles" 1 1 false
-i 4 "rice" 2 2 true
-i 5 "burger" 3 3 false
-a 1 5
-a 2 3
-a 2 4
-a 1 2
-a 0 1
-p 0
-d
+#! /bin/bash
+
+seed=$RANDOM
+
+./menu < tests/basic.in > tests/.basic1
+./menuMaster < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./menu < tests/menuitems.in > tests/.menuitems1
+./menuMaster < tests/menuitems.in > tests/.menuitems2
+diff tests/.menuitems1 tests/.menuitems2
+
+./menu < tests/advanced.in > tests/.advanced1
+./menuMaster < tests/advanced.in > tests/.advanced2
+diff tests/.advanced1 tests/.advanced2
