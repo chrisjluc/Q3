@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <algorithm>
 
 #include "MenuItem.h"
 #include "Menu.h"
@@ -164,12 +165,6 @@ int main() {
                     int index = readIndex(cin);
                     if (!menus[index]) throw NoMenu(index);
 
-                    cout << "\nVeggie Items:\n";
-                    std::for_each(menus[index]->begin(), menus[index]->end(), [](const MenuComponent& m){
-                        if(m.isVeggie()){
-                            cout << "\t" << m.name() << ", $" << m.price() << ", cal=" << m.calories() << " (V)\n";
-                        }
-                    });
 
                     break;
                 }
@@ -210,6 +205,18 @@ int main() {
 
 
     } // while cin OK
+
+    cout << "\nVeggie Items:\n";
+    MenuComponent *main = menus[0];
+    if (main == NULL) {
+        cout << "Menu Element 0 does not exist." << endl;
+    } else {
+        std::for_each(main->begin(), main->end(), [](const MenuComponent &m) {
+            if (m.isVeggie()) {
+                cout << "\t" << m.name() << ", $" << m.price() << ", cal=" << m.calories() << " (V)\n";
+            }
+        });
+    }
 
     for (int i = 0; i < 10; i++) {
         if (menus[i])
