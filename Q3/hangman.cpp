@@ -7,7 +7,7 @@
 
 using namespace std;
 
-// Check if char 'c' is in the vector
+// Check if char is in the vector
 bool isCharInVector(char c, vector<char> v) {
     return find_if(v.begin(), v.end(),
                    [c](char x) { return toupper(c) == x || tolower(c) == x; }) != v.end();
@@ -21,13 +21,19 @@ int count(vector<char> lettersGuessed, string word) {
 }
 
 int main(int argc, char **argv) {
+    // Define constants
+    const char PLAY_AGAIN = 'y';
+    const string newFile = "gamewords";
+
+
+    // Define variables we will need
     int seed = 0;
     int lives = 5;
     vector<string> words;
     vector<char> lettersGuessed;
     char userPlayAgain = 'y';
-    const char PLAY_AGAIN = 'y';
 
+    // Process file of words
     if (argc >= 2) {
         // Read in file
         char *filename = argv[1];
@@ -50,12 +56,13 @@ int main(int argc, char **argv) {
         return 0;
     }
 
-    // Remove invalid words
+    // Remove invalid words that have size < 6 or don't consist of all alphabetic characters
     auto end = std::remove_if(words.begin(), words.end(), [](string word) {
         return word.length() < 6 || !std::all_of(word.begin(), word.end(), [](char c) { return isalpha(c); });
     });
     words.erase(end, words.end());
 
+    // Make sure we have at least 1 word
     int numWords = words.size();
     if (numWords == 0) {
         cout << "Error: Pool of game words is empty." << endl;
@@ -63,7 +70,6 @@ int main(int argc, char **argv) {
     }
 
     // Write filtered words to a file
-    string newFile = "gamewords";
     ofstream outfile;
     outfile.open(newFile);
     std::for_each(words.begin(), words.end(), [&outfile](string word) {
@@ -79,30 +85,36 @@ int main(int argc, char **argv) {
     }
     mt19937 rng(seed);
 
+    // Main loop for the player wanting to play multiple games of hangman
     while (tolower(userPlayAgain) == PLAY_AGAIN) {
 
         // Set new game
         lives = 5;
         lettersGuessed.clear();
-        string word = words.at(rng() % numWords);
+        string gameWord = words.at(rng() % numWords);
 
+        // Game loop
         while (lives > 0) {
 
-            // Print out some data for the player
             cout << "Word: ";
-            for_each(word.begin(), word.end(), [lettersGuessed](char c) {
+
+            // Print the game word replaced by - for unguessed letters
+            for_each(gameWord.begin(), gameWord.end(), [lettersGuessed](char c) {
                 if (isCharInVector(c, lettersGuessed)) {
                     cout << c;
                 } else {
                     cout << "-";
                 }
             });
-            cout << endl;
-            cout << "Letters used:";
+
+            cout << endl << "Letters used:";
+            // Print the letters guessed with spaces in between
             for_each(lettersGuessed.begin(), lettersGuessed.end(), [](char c) {
                 cout << " " << c;
             });
             cout << endl;
+
+            // Print out number of lives the player has left
             if (lives == 1) {
                 cout << "You have 1 life left.\n";
             } else {
@@ -117,34 +129,39 @@ int main(int argc, char **argv) {
             cin >> guess;
 
             if (guess.length() > 1) {
-                // Attempted to guess the entire word
-                if (guess == word) {
+                // The player has attempted to guess the entire gameWord
+                if (guess == gameWord) {
                     cout << "You WIN!" << endl;
                 } else {
-                    cout << "You LOSE!  The word was \"" << word << "\"." << endl;
+                    cout << "You LOSE!  The gameWord was \"" << gameWord << "\"." << endl;
                 }
                 break;
             } else {
                 // Convert guess to lowercase
                 char guessChar = tolower(*guess.c_str());
 
-
+                // Check if the player has already guessed the letter
                 if (isCharInVector(guessChar, lettersGuessed)) {
                     cout << "You already guessed letter \"" << guessChar << "\"." << endl;
                 } else {
-                    int sizeBeforeGuess = count(lettersGuessed, word);
-                    lettersGuessed.push_back(guessChar);
-                    int sizeAfterGuess = count(lettersGuessed, word);
+                    // Number of characters in the word the player has guessed
+                    int sizeBeforeGuess = count(lettersGuessed, gameWord);
 
-                    // The guessed character isn't in the word
+                    lettersGuessed.push_back(guessChar);
+
+                    // Number of characters in the word the player has guessed, including the most recent guess
+                    int sizeAfterGuess = count(lettersGuessed, gameWord);
+
+                    // The guessed character isn't in the gameWord if the size doesn't change
                     if (sizeAfterGuess == sizeBeforeGuess) {
                         lives--;
 
                     } else if (sizeAfterGuess > sizeBeforeGuess) {
                         // Guessed a correct letter
+
                         // If the number of letters in the words are all guessed, the player has won.
-                        if (sizeAfterGuess == word.size()) {
-                            cout << "You WIN!  The word was \"" << word << "\"." << endl;
+                        if (sizeAfterGuess == gameWord.size()) {
+                            cout << "You WIN!  The gameWord was \"" << gameWord << "\"." << endl;
                             break;
                         }
                     } else {
@@ -154,7 +171,7 @@ int main(int argc, char **argv) {
             }
 
             if (lives == 0) {
-                cout << "You LOSE!  The word was \"" << word << "\"." << endl;
+                cout << "You LOSE!  The gameWord was \"" << gameWord << "\"." << endl;
             }
         }
         cout << "Do you want to play again? [Y/N] ";
