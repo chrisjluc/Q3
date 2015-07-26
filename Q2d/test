@@ -1,0 +1,19 @@
+#! /bin/bash
+
+seed=$RANDOM
+
+./menu < tests/basic.in > tests/.basic1
+./menuMaster < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./menu < tests/menuitems.in > tests/.menuitems1
+./menuMaster < tests/menuitems.in > tests/.menuitems2
+diff tests/.menuitems1 tests/.menuitems2
+
+./menu < tests/advanced.in > tests/.advanced1
+./menuMaster < tests/advanced.in > tests/.advanced2
+diff tests/.advanced1 tests/.advanced2
+
+./menu < tests/samemenus.in > tests/.samemenus1
+./menuMaster < tests/samemenus.in > tests/.samemenus2
+diff tests/.samemenus1 tests/.samemenus2

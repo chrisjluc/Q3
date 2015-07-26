@@ -1,0 +1,8 @@
+m 0 "rest"
+m 1 "food"
+m 2 "asian"
+a 0 1
+a 0 2
+p 0
+d
+100
