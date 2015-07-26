@@ -62,33 +62,6 @@ Op convertOp(string opStr) {
     }
 }
 
-class is_item {
-    string item_;
-public:
-    is_item(string item) : item_(item) { }
-
-    bool operator()(const MenuComponent& m) { return m.name() == item_ && m.isLeaf(); }
-};
-
-class order_exists {
-    string name_;
-public:
-    order_exists(string name) : name_(name) { }
-
-    bool operator()(Order *o) { return o->component->name() == name_; }
-};
-
-void printOrder(Order *order) {
-    cout << "(" << order->num << ") " << order->component->name()
-    << ", $" << order->component->price() << " = $"
-    << order->component->price() * order->num << endl;
-}
-
-float sum(float total, Order *order) {
-    return total + order->component->price() * order->num;
-}
-
-
 // try to clean up the stream after fail() bit of istream is set
 void sinCleanup(istream &sin) {
     cin.clear();
@@ -260,9 +233,12 @@ int main() {
                 break;
             } else if (command == "o") {
                 name = readName(cin);
-                auto it = std::find_if(main->begin(), main->end(), is_item(name));
+                auto it = std::find_if(main->begin(), main->end(), [name](const MenuComponent& m) {
+                    return m.name() == name && m.isLeaf();
+                });
                 if (it != main->end()) {
-                    auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
+                    auto it_order = std::find_if(orders.begin(), orders.end(),
+                                                 [name](Order *o) { return o->component->name() == name; });
                     if (it_order != orders.end()) {
                         (*it_order)->num++;
                     } else {
@@ -274,9 +250,15 @@ int main() {
             }
             cout << "> ";
         }
-        std::for_each(orders.begin(), orders.end(), printOrder);
+        std::for_each(orders.begin(), orders.end(), [](Order *order) {
+            cout << "(" << order->num << ") " << order->component->name()
+            << ", $" << order->component->price() << " = $"
+            << order->component->price() * order->num << endl;
+        });
         float init = 0;
-        float total = std::accumulate(orders.begin(), orders.end(), init, sum);
+        float total = std::accumulate(orders.begin(), orders.end(), init, [](float total, Order *order) {
+            return total + order->component->price() * order->num;
+        });
         cout << "TOTAL = $" << total << endl;
         for (auto it = orders.begin(); it != orders.end(); ++it) {
             delete *it;
