@@ -118,10 +118,10 @@ int main(int argc, char **argv) {
                 }
                 break;
             } else {
-                char g = *guess.c_str();
-                if (!isCharInVector(g, lettersGuessed)) {
+                char guessChar = tolower(*guess.c_str());
+                if (!isCharInVector(guessChar, lettersGuessed)) {
                     int sizeBeforeGuess = count(lettersGuessed, word);
-                    lettersGuessed.push_back(g);
+                    lettersGuessed.push_back(guessChar);
                     int sizeAfterGuess = count(lettersGuessed, word);
                     if (sizeAfterGuess == sizeBeforeGuess) {
                         lives--;
@@ -135,11 +135,13 @@ int main(int argc, char **argv) {
                     } else {
                         assert(false);
                     }
+                } else {
+                    cout << "You already guessed letter \"" << guessChar << "\"." << endl;
                 }
             }
 
             if (lives == 0) {
-                cout << "You LOSE!  The word was " << word << ".\n";
+                cout << "You LOSE!  The word was \"" << word << "\"." << endl;
             }
         }
         cout << "Do you want to play again? [Y/N] ";
