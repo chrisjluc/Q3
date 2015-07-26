@@ -258,16 +258,19 @@ int main() {
             cin >> command;
             if (command == "t") {
                 break;
-            }
-            name = readName(cin);
-            auto it = std::find_if(main->begin(), main->end(), is_item(name));
-            if (it != main->end()) {
-                auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
-                if (it_order != orders.end()) {
-                    (*it_order)->num++;
-                } else {
-                    orders.push_back(new Order(it.operator->()));
+            } else if (command == "o") {
+                name = readName(cin);
+                auto it = std::find_if(main->begin(), main->end(), is_item(name));
+                if (it != main->end() && it->isLeaf()) {
+                    auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
+                    if (it_order != orders.end()) {
+                        (*it_order)->num++;
+                    } else {
+                        orders.push_back(new Order(it.operator->()));
+                    }
                 }
+            } else {
+                cout << "Invalid order." << endl;
             }
             cout << "> ";
         }
