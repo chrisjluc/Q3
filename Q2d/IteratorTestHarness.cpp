@@ -220,14 +220,18 @@ int main() {
     if (main == NULL) {
         cout << "\nMenu Element 0 does not exist." << endl;
     } else {
+
+        // Increment each element that is a menu item (or leaf)
         std::for_each(main->begin(), main->end(), [price](MenuComponent &m) {
             if (m.isLeaf()) {
                 m.priceIs(m.price() + price);
             }
         });
-        for (auto it = main->begin(); it != main->end(); ++it) {
-            cout << *it << endl;
-        }
+
+        // Print all elements
+        std::for_each(main->begin(), main->end(), [](const MenuComponent &m) {
+            cout << m << endl;
+        });
     }
 
     for (int i = 0; i < 10; i++) {

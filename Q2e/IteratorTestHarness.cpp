@@ -260,8 +260,15 @@ int main() {
                 break;
             } else if (command == "o") {
                 name = readName(cin);
+
+                // Find the menu item matching the name
                 auto it = std::find_if(main->begin(), main->end(), is_item(name));
+
+                // Make sure the item exists
                 if (it != main->end()) {
+
+                    // Check out vector of orders and if it exists increment the number
+                    // Else create a new order and add it to our vector
                     auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
                     if (it_order != orders.end()) {
                         (*it_order)->num++;
@@ -274,10 +281,16 @@ int main() {
             }
             cout << "> ";
         }
+
+        // Print out all the orders
         std::for_each(orders.begin(), orders.end(), printOrder);
+
+        // Sum up the orders and print a total
         float init = 0;
         float total = std::accumulate(orders.begin(), orders.end(), init, sum);
         cout << "TOTAL = $" << total << endl;
+
+        // Remove allocated memory
         for (auto it = orders.begin(); it != orders.end(); ++it) {
             delete *it;
         }
