@@ -219,6 +219,7 @@ int main() {
     if (main == NULL) {
         cout << "\nMenu Element 0 does not exist." << endl;
     } else {
+        // Find the menu component with the same name
         auto it = std::find_if(main->begin(), main->end(), [name](const MenuComponent &m) {
             return m.name() == name;
         });
@@ -226,14 +227,15 @@ int main() {
             cout << "\nMenu " << name << " does not exist.\n";
         } else {
             int depth = (int) it->menuDepth().length();
-            cout << endl;
-            while (it != main->end()) {
-                cout << *it << endl;
-                ++it;
-                if (it == NULL || it->menuDepth().length() <= depth) {
-                    break;
+            // Print out the menu element we found
+            cout << *it << endl;
+
+            // Print out all sub menu elements, which are elements with greater depth
+            std::for_each(it, main->end(), [depth](const MenuComponent &m) {
+                if (m.menuDepth().length() > depth) {
+                    cout << m << endl;
                 }
-            }
+            });
         }
     }
 

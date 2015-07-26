@@ -8,6 +8,7 @@
 class MenuComponent {
 public:
     class Iterator : std::iterator<std::forward_iterator_tag, MenuComponent *> {
+        
         friend bool operator==(const Iterator &, const Iterator &);
 
         friend bool operator!=(const Iterator &, const Iterator &);

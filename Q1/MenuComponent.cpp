@@ -49,6 +49,9 @@ MenuComponent::Iterator::IterNode::IterNode(MenuComponent *node, int cursor) : n
 }
 
 bool operator==(const MenuComponent::Iterator &a, const MenuComponent::Iterator &b) {
+    // If both stacks are empty they are equal
+    // If both stacks are not empty and the menu componenet they point to are the same,
+    // then they are equal
     return (a.istack.size() == 0 && b.istack.size() == 0)
            || (a.istack.size() != 0 && b.istack.size() != 0
                && *(a.istack.top()->node) == *(b.istack.top()->node));
@@ -63,6 +66,9 @@ MenuComponent &MenuComponent::Iterator::operator*() {
 }
 
 MenuComponent *MenuComponent::Iterator::operator->() {
+    if (istack.size() == 0){
+        return NULL;
+    }
     return istack.top()->node;
 }
 
