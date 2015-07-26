@@ -10,6 +10,10 @@
 
 class Menu : public MenuComponent {
 public:
+    class Iterator : public MenuComponent::Iterator {
+        Iterator(Menu *);
+    };
+
     // constructor
     Menu(const std::string);
 

@@ -74,3 +74,7 @@ void Menu::menuDepthInc() {
 void Menu::print(ostream &sout) const {
     sout << "\n" << menuDepth() << name() << ":";
 }
+
+Menu::Iterator::Iterator(Menu *menu) : MenuComponent::Iterator(menu) {
+
+}

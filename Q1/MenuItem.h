@@ -8,6 +8,10 @@
 
 class MenuItem : public MenuComponent {
 public:
+
+    class Iterator : public MenuComponent::Iterator {
+        Iterator(MenuItem *);
+    };
     // constructor
     MenuItem(const std::string, float, int, bool);
 
