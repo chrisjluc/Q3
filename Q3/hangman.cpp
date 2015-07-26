@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
         infile.open(filename);
         // Loop through all words in file
         if (!infile.is_open()) {
-            cout << "Error: Could not open file " << filename << "." << endl;
+            cout << "Error: Could not open file \"" << filename << "\"." << endl;
             return 0;
         }
         while (!infile.eof()) {
@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
         string word = words.at(rng() % numWords);
 
         while (lives > 0) {
-            cout << "word: ";
+            cout << "Word: ";
             for_each(word.begin(), word.end(), [lettersGuessed](char c) {
                 if (isCharInVector(c, lettersGuessed)) {
                     cout << c;
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
                 if (guess == word) {
                     cout << "You WIN!" << endl;
                 } else {
-                    cout << "You LOSE!  The word was " << word << ".\n";
+                    cout << "You LOSE!  The word was \"" << word << "\"." << endl;
                 }
                 break;
             } else {
@@ -129,7 +129,7 @@ int main(int argc, char **argv) {
                     } else if (sizeAfterGuess > sizeBeforeGuess) {
                         if (sizeAfterGuess == word.size()) {
                             // Guessed the word
-                            cout << "You WIN!  The word was " << word << "." << endl;
+                            cout << "You WIN!  The word was \"" << word << "\"." << endl;
                             break;
                         }
                     } else {
