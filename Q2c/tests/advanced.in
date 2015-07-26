@@ -1,0 +1,38 @@
+m 0 "rest"
+m 1 "food"
+m 2 "asian"
+m 3 "chinese"
+m 4 "jap"
+i 5 "chowmein" 1 1 false
+i 6 "rice" 2 2 false
+i 7 "sushi" 3 3 true
+a 3 5
+a 3 6
+a 4 7
+i 5 "noodles" 1 100 true
+i 6 "dimsum" 22 12 true
+a 3 5
+a 3 6
+a 2 3
+a 2 4
+p 2
+a 1 2
+p 1
+m 2 "drinks"
+i 3 "soda" 1 1 false
+i 4 "milk" 1 1 true
+i 5 "juice" 1 1 false
+a 2 3
+a 2 4
+a 2 5
+p 2
+a 0 1
+a 0 2
+i 1 "coupon" 10 10 false
+i 2 "bling" 4 4 true
+a 0 1
+a 0 2
+p 0
+d
+"asian"
+"chinese"

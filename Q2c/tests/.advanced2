@@ -1,0 +1,89 @@
+Test harness for Menu Composite and Iterator
+
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+asian:
+
+	chinese:
+		chowmein, $1.00, cal=1
+		rice, $2.00, cal=2
+		noodles, $1.00, cal=100 (V)
+		dimsum, $22.00, cal=12 (V)
+
+	jap:
+		sushi, $3.00, cal=3 (V)
+
+Command: 
+Command: 
+food:
+
+	asian:
+
+		chinese:
+			chowmein, $1.00, cal=1
+			rice, $2.00, cal=2
+			noodles, $1.00, cal=100 (V)
+			dimsum, $22.00, cal=12 (V)
+
+		jap:
+			sushi, $3.00, cal=3 (V)
+
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+drinks:
+	soda, $1.00, cal=1
+	milk, $1.00, cal=1 (V)
+	juice, $1.00, cal=1
+
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+Command: 
+rest:
+
+	food:
+
+		asian:
+
+			chinese:
+				chowmein, $1.00, cal=1
+				rice, $2.00, cal=2
+				noodles, $1.00, cal=100 (V)
+				dimsum, $22.00, cal=12 (V)
+
+			jap:
+				sushi, $3.00, cal=3 (V)
+
+	drinks:
+		soda, $1.00, cal=1
+		milk, $1.00, cal=1 (V)
+		juice, $1.00, cal=1
+	coupon, $10.00, cal=10
+	bling, $4.00, cal=4 (V)
+
+Command: 
