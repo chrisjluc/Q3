@@ -85,7 +85,7 @@ public:
 
 protected:
     virtual void print(
-            std::ostream &) const = 0;             // used to within operator<< to create a polymorphic operator<<
+            std::ostream &) const{}             // used to within operator<< to create a polymorphic operator<<
 
 private:
     std::string name_;
