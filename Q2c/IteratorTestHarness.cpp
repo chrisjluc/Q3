@@ -209,6 +209,7 @@ int main() {
 
     } // while cin OK
 
+    // Set precision to 2 decimal places
     cout.precision(2);
     cout.setf(ios::fixed, ios::floatfield);
 
@@ -221,6 +222,8 @@ int main() {
     if (main == NULL) {
         cout << "\nMenu Element 0 does not exist." << endl;
     } else {
+
+        // Find the parent element with a matching name.
         auto it = std::find_if(main->begin(), main->end(), [parentName](const MenuComponent &m) {
             return m.name() == parentName;
         });
@@ -228,11 +231,16 @@ int main() {
             cout << "\nMenu " << parentName << " does not exist.\n";
         } else {
             try {
+
+                // Remove the chile element of the parent element
                 it->remove(childName);
-                for (auto it = main->begin(); it != main->end(); ++it) {
-                    cout << *it << endl;
-                }
-            }catch(MenuComponent::InvalidOp &){
+
+                // Print all elements, including the one with the removed element.
+                std::for_each(main->begin(), main->end(), [](const MenuComponent &m) {
+                    cout << m << endl;
+                });
+
+            } catch (MenuComponent::InvalidOp &) {
                 cout << "Command is invalid on Menu Items. No change to menus." << endl;
             }
         }
