@@ -7,14 +7,16 @@
 
 using namespace std;
 
+// Check if char 'c' is in the vector
 bool isCharInVector(char c, vector<char> v) {
     return find_if(v.begin(), v.end(),
                    [c](char x) { return toupper(c) == x || tolower(c) == x; }) != v.end();
 }
 
-int count(vector<char> v1, string v2) {
-    return count_if(v2.begin(), v2.end(), [v1](char c) {
-        return isCharInVector(c, v1);
+// Counts how many letters in the gameword have been guessed
+int count(vector<char> lettersGuessed, string word) {
+    return (int) count_if(word.begin(), word.end(), [lettersGuessed](char c) {
+        return isCharInVector(c, lettersGuessed);
     });
 }
 
@@ -79,11 +81,14 @@ int main(int argc, char **argv) {
 
     while (tolower(userPlayAgain) == PLAY_AGAIN) {
 
+        // Set new game
         lives = 5;
         lettersGuessed.clear();
         string word = words.at(rng() % numWords);
 
         while (lives > 0) {
+
+            // Print out some data for the player
             cout << "Word: ";
             for_each(word.begin(), word.end(), [lettersGuessed](char c) {
                 if (isCharInVector(c, lettersGuessed)) {
@@ -103,6 +108,8 @@ int main(int argc, char **argv) {
             } else {
                 cout << "You have " << lives << " lives left.\n";
             }
+
+            // Prompt for a guess
             cout << "Next guess: ";
 
             // Process the guess
@@ -118,25 +125,31 @@ int main(int argc, char **argv) {
                 }
                 break;
             } else {
+                // Convert guess to lowercase
                 char guessChar = tolower(*guess.c_str());
-                if (!isCharInVector(guessChar, lettersGuessed)) {
+
+
+                if (isCharInVector(guessChar, lettersGuessed)) {
+                    cout << "You already guessed letter \"" << guessChar << "\"." << endl;
+                } else {
                     int sizeBeforeGuess = count(lettersGuessed, word);
                     lettersGuessed.push_back(guessChar);
                     int sizeAfterGuess = count(lettersGuessed, word);
+
+                    // The guessed character isn't in the word
                     if (sizeAfterGuess == sizeBeforeGuess) {
                         lives--;
 
                     } else if (sizeAfterGuess > sizeBeforeGuess) {
+                        // Guessed a correct letter
+                        // If the number of letters in the words are all guessed, the player has won.
                         if (sizeAfterGuess == word.size()) {
-                            // Guessed the word
                             cout << "You WIN!  The word was \"" << word << "\"." << endl;
                             break;
                         }
                     } else {
                         assert(false);
                     }
-                } else {
-                    cout << "You already guessed letter \"" << guessChar << "\"." << endl;
                 }
             }
 
