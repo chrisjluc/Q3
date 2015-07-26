@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <numeric>
 
 #include "MenuItem.h"
 #include "Menu.h"
@@ -35,10 +36,10 @@ enum Op {
 };
 
 struct Order {
-    MenuItem *menuItem;
+    MenuComponent *component;
     int num;
 
-    Order(MenuItem *menuItem) : menuItem(menuItem), num(0) { };
+    Order(MenuComponent *component) : component(component), num(1) { };
 };
 
 // parse input command
@@ -59,6 +60,32 @@ Op convertOp(string opStr) {
         default:
             return NONE;
     }
+}
+
+class is_item {
+    string item_;
+public:
+    is_item(string item) : item_(item) { }
+
+    bool operator()(MenuComponent m) { return m.name() == item_; }
+};
+
+class order_exists {
+    string name_;
+public:
+    order_exists(string name) : name_(name) { }
+
+    bool operator()(Order *o) { return o->component->name() == name_; }
+};
+
+void printOrder(Order *order) {
+    cout << "(" << order->num << ") " << order->component->name()
+    << ", $" << order->component->price() << " = $"
+    << order->component->price() * order->num << endl;
+}
+
+float sum(float total, Order *order) {
+    return total + order->component->price() * order->num;
 }
 
 
@@ -219,13 +246,38 @@ int main() {
     cout.setf(ios::fixed, ios::floatfield);
 
     MenuComponent *main = menus[0];
-    vector<Order> orders;
+    vector<Order *> orders;
+    command = "";
+    string name;
 
     cout << "\nMay I take your order?\n> ";
-
     if (main == NULL) {
         cout << "\nMenu Element 0 does not exist." << endl;
     } else {
+        while (true) {
+            cin >> command;
+            if (command == "t") {
+                break;
+            }
+            name = readName(cin);
+            auto it = std::find_if(main->begin(), main->end(), is_item(name));
+            if (it != main->end()) {
+                auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
+                if (it_order != orders.end()) {
+                    (*it_order)->num++;
+                } else {
+                    orders.push_back(new Order(it.operator->()));
+                }
+            }
+            cout << "> ";
+        }
+        std::for_each(orders.begin(), orders.end(), printOrder);
+        float init = 0;
+        float total = std::accumulate(orders.begin(), orders.end(), init, sum);
+        cout << "TOTAL = $" << total << endl;
+        for (auto it = orders.begin(); it != orders.end(); ++it) {
+            delete *it;
+        }
     }
 
 
