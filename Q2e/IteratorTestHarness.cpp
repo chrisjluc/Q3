@@ -267,8 +267,8 @@ int main() {
                 // Make sure the item exists
                 if (it != main->end()) {
 
-                    // Check out vector of orders and if it exists increment the number
-                    // Else create a new order and add it to our vector
+                    // Check our vector of orders for the menu item, and if it exists increment the number of the order
+                    // Else create a new order and add it to our orders vector
                     auto it_order = std::find_if(orders.begin(), orders.end(), order_exists(name));
                     if (it_order != orders.end()) {
                         (*it_order)->num++;

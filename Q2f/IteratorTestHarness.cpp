@@ -233,9 +233,14 @@ int main() {
                 break;
             } else if (command == "o") {
                 name = readName(cin);
+
+                // Find the menu item matching the name
                 auto it = std::find_if(main->begin(), main->end(), [name](const MenuComponent& m) {
                     return m.name() == name && m.isLeaf();
                 });
+
+                // Check our vector of orders for the menu item, and if it exists increment the number of the order
+                // Else create a new order and add it to our orders vector
                 if (it != main->end()) {
                     auto it_order = std::find_if(orders.begin(), orders.end(),
                                                  [name](Order *o) { return o->component->name() == name; });
@@ -250,15 +255,21 @@ int main() {
             }
             cout << "> ";
         }
+
+        // Print out all the orders
         std::for_each(orders.begin(), orders.end(), [](Order *order) {
             cout << "(" << order->num << ") " << order->component->name()
             << ", $" << order->component->price() << " = $"
             << order->component->price() * order->num << endl;
         });
+
+        // Sum up the orders and print a total
         float init = 0;
         float total = std::accumulate(orders.begin(), orders.end(), init, [](float total, Order *order) {
             return total + order->component->price() * order->num;
         });
+
+        // Remove allocated memory
         cout << "TOTAL = $" << total << endl;
         for (auto it = orders.begin(); it != orders.end(); ++it) {
             delete *it;
