@@ -214,7 +214,7 @@ int main() {
 
     cout << "\nEnter name of parent menu element: ";
     string parentName = readName(cin);
-    cout << "\nEnter name of child menu element to be removed: ";
+    cout << "Enter name of child menu element to be removed: ";
     string childName = readName(cin);
 
     MenuComponent *main = menus[0];
@@ -233,7 +233,7 @@ int main() {
                     cout << *it << endl;
                 }
             }catch(MenuComponent::InvalidOp &){
-                cout << "\nCommand is invalid on Menu Items. No change to menus." << endl;
+                cout << "Command is invalid on Menu Items. No change to menus." << endl;
             }
         }
     }
