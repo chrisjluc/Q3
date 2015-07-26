@@ -133,7 +133,7 @@ int main(int argc, char **argv) {
                 if (guess == gameWord) {
                     cout << "You WIN!" << endl;
                 } else {
-                    cout << "You LOSE!  The gameWord was \"" << gameWord << "\"." << endl;
+                    cout << "You LOSE!  The word was \"" << gameWord << "\"." << endl;
                 }
                 break;
             } else {
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
 
                         // If the number of letters in the words are all guessed, the player has won.
                         if (sizeAfterGuess == gameWord.size()) {
-                            cout << "You WIN!  The gameWord was \"" << gameWord << "\"." << endl;
+                            cout << "You WIN!  The word was \"" << gameWord << "\"." << endl;
                             break;
                         }
                     } else {
@@ -171,7 +171,7 @@ int main(int argc, char **argv) {
             }
 
             if (lives == 0) {
-                cout << "You LOSE!  The gameWord was \"" << gameWord << "\"." << endl;
+                cout << "You LOSE!  The word was \"" << gameWord << "\"." << endl;
             }
         }
         cout << "Do you want to play again? [Y/N] ";
