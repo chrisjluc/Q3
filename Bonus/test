@@ -1,0 +1,39 @@
+#! /bin/bash
+
+seed=$RANDOM
+
+./hangman < tests/basic.in > tests/.basic1
+./hangman_ < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman hello < tests/basic.in > tests/.basic1
+./hangman_ hello < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman empty < tests/basic.in > tests/.basic1
+./hangman_ empty < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman original < tests/basic.in > tests/.basic1
+./hangman_ original < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman 0 < tests/basic.in > tests/.basic1
+./hangman_ 0 < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman original 0 < tests/basic.in > tests/.basic1
+./hangman_ original 0 < tests/basic.in > tests/.basic2
+diff tests/.basic1 tests/.basic2
+
+./hangman original 42 < tests/seeded.in > tests/.seeded1
+./hangman_ original 42 < tests/seeded.in > tests/.seeded2
+diff tests/.seeded1 tests/.seeded2
+
+./hangman original < tests/long.in > tests/.long1
+./hangman_ original< tests/long.in > tests/.long2
+diff tests/.long1 tests/.long2
+
+./hangman original 0 < tests/fullguesses.in > tests/.fullguesses1
+./hangman_ original 0 < tests/fullguesses.in > tests/.fullguesses2
+diff tests/.fullguesses1 tests/.fullguesses2

@@ -1,0 +1,3 @@
+Using the strategy design pattern to implement a computer to play a game of hangman. There will be three concrete strategy implementations. The first strategy is a basic strategy that guesses the letters in alphabetical order, the second strategy is guessing the letters with the highest frequency in english text, and the last strategy is guessing the most frequently used letters in words of a certain length.
+
+The main hangman logic will be borrowed from Q3. And to execute the program you have to pass in the word file, the seed for the random number generator and the strategy you want to use. Ex. ./exec gamewords 0 1.

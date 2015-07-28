@@ -1,0 +1,60 @@
+Word: -------
+Letters used:
+You have 5 lives left.
+Next guess: Word: r---r--
+Letters used: r
+You have 5 lives left.
+Next guess: Word: re--r--
+Letters used: r e
+You have 5 lives left.
+Next guess: Word: res-r-s
+Letters used: r e s
+You have 5 lives left.
+Next guess: Word: resor-s
+Letters used: r e s o
+You have 5 lives left.
+Next guess: You already guessed letter "r".
+Word: resor-s
+Letters used: r e s o
+You have 5 lives left.
+Next guess: You WIN!  The word was "resorts".
+Do you want to play again? [Y/N] Word: -----------
+Letters used:
+You have 5 lives left.
+Next guess: Word: -----------
+Letters used: a
+You have 4 lives left.
+Next guess: Word: -----------
+Letters used: a b
+You have 3 lives left.
+Next guess: Word: -----------
+Letters used: a b c
+You have 2 lives left.
+Next guess: Word: --d-------d
+Letters used: a b c d
+You have 2 lives left.
+Next guess: Word: -id-------d
+Letters used: a b c d i
+You have 2 lives left.
+Next guess: Word: -id-------d
+Letters used: a b c d i o
+You have 1 life left.
+Next guess: You already guessed letter "o".
+Word: -id-------d
+Letters used: a b c d i o
+You have 1 life left.
+Next guess: You LOSE!  The word was "sidestepped".
+Do you want to play again? [Y/N] Word: ------
+Letters used:
+You have 5 lives left.
+Next guess: Word: s----s
+Letters used: s
+You have 5 lives left.
+Next guess: Word: st-t-s
+Letters used: s t
+You have 5 lives left.
+Next guess: Word: stat-s
+Letters used: s t a
+You have 5 lives left.
+Next guess: You WIN!  The word was "status".
+Do you want to play again? [Y/N] 
