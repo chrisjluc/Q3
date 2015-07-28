@@ -12,7 +12,7 @@ class FrequencyTextStrategy: public Strategy {
 public:
     virtual std::string nextGuess(State state);
 private:
-    const std::string alphabetByGreatestFrequency[26] = {"E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "U", "C", "M", "F", "W", "Y", "P", "V", "B", "G", "K", "Q", "J", "X", "Z" };
+    const static std::string alphabetByGreatestFrequency[26];
 };
 
 
